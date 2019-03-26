@@ -71,12 +71,6 @@ const SlideEditor = ({ manifestJSON, canvasId }) => {
 						nextRange,
 						region,
 					} = rangeProps;
-					// console.log(
-					// 	'RangeNavigationProvider',
-					// 	manifest,
-					// 	canvas,
-					// 	region,
-					// )
 					return (
 						<Slide
 							fullscreenProps={{
