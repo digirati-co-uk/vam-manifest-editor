@@ -7,7 +7,7 @@ import {
   DialogActions,
   Button,
 } from '@material-ui/core';
-import { IIIFCollectionExplorer } from '@IIIF-MEC/core';
+import { IIIFCollectionExplorer } from '@iiif-mec/core';
 import { LibraryBooks } from '@material-ui/icons';
 
 

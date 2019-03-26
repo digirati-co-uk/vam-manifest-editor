@@ -37,7 +37,7 @@ import {
   // Reducers
   IIIFReducer,
   EditorReducer,
-} from '@IIIF-MEC/core';
+} from '@iiif-mec/core';
 
 import EditorModeSelector from '../components/EditorModeSelector';
 import LoadManifestModal from '../components/LoadManifestModal';

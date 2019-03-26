@@ -13,7 +13,7 @@ import {
   renderResource,
   queryResourceById,
   SIZING_STRATEGY,
-} from '@IIIF-MEC/core';
+} from '@iiif-mec/core';
 
 export default class TextualBodyDescribing extends BaseAnnotation {
   static formName = 'TextualBodyDescribing';
