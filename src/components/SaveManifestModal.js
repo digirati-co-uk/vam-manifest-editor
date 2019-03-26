@@ -12,7 +12,7 @@ import {
   Snackbar,
 } from '@material-ui/core';
 import { LibraryBooks } from '@material-ui/icons';
-import { IIIFCollectionExplorer } from '@IIIF-MEC/core';
+import { IIIFCollectionExplorer } from '@iiif-mec/core';
 import  { saveFixtures } from '../utils';
 const style = theme => ({
   titleBar: {
