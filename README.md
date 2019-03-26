@@ -1,8 +1,8 @@
-# VAM Manifest Editor
+# VAM Manifest Editor
 
 The project is a IIIF Manifest Editor implementation specific for `VAM-Slideshow` and `VAM-Zoomable-Annotation` viewers.
 
-## Local development 
+## Local development 
 
 Install pre-requirements:
 
