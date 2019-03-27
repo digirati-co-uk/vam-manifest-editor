@@ -32,9 +32,21 @@ yarn && yarn build
 The `dist` folder contains the build. It is a static site.
 
 
-## Configuration options:
+## Compile time options
 
-TODO: collection server location
+The collection server base url can be updated via an environment variable:
+
+```
+export COLLECTION_SERVER=http://localhost:8181/p3 && yarn start
+```
+
+For deployments: 
+
+```
+export COLLECTION_SERVER=http://somewhere.in.the.cloudz/p3 && yarn release
+```
+
+Note: The hot-swap dev server only reads the value up while it is starting up.
 
 
 ## Integration
