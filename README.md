@@ -39,13 +39,13 @@ TODO: collection server location
 
 ## Integration
 
-### Iframe using the demo site:
+### Iframe using the demo site:
 
 ```
 <iframe src="https://vam-manifest-editor.netlify.com/" width="1440" height="768"></iframe>
 ```
 
-### Iframe using the static build served by `nginx`
+### Iframe using the static build served by `nginx`
 
 1. build the static site:
 
