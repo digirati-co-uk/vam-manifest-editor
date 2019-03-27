@@ -1,4 +1,5 @@
 import React from 'react';
+import './suggested.css';
 
 const VAMIcon = ({ className, svgClassName, name}) => (
   <div
