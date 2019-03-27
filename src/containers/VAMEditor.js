@@ -41,7 +41,7 @@ import PreviewModal from '../components/Preview/PreviewModal';
 import SlideEditor from '../components/SlideEditor';
 import  { saveFixtures, loadManifestHacks } from '../utils';
 import './VAMEditor.scss';
-import configs from '../defaults/index'; 
+import * as configs from '../defaults/index'; 
 
 const theme = createMuiTheme({
   palette: {
@@ -397,7 +397,7 @@ class VAMEditor extends React.Component {
                   />
                   <IIIFCollectionExplorer
                     title="IIIF Collection Explorer"
-                    url={config.rootManifestUrl}
+                    url={configs.rootManifestUrl}
                   />
                 </TabPanel>
               </Layout.Right>
@@ -424,7 +424,7 @@ class VAMEditor extends React.Component {
         <LoadManifestModal
           open={this.state.loadManifestDialogOpen}
           handleClose={this.toggleLoadManifestDialog}
-          collectionURL={config.rootManifestUrl}
+          collectionURL={configs.rootManifestUrl}
           loadManifest={this.loadManifest}
         />
         <PreviewModal
