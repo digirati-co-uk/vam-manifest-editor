@@ -41,7 +41,7 @@ import PreviewModal from '../components/Preview/PreviewModal';
 import SlideEditor from '../components/SlideEditor';
 import  { saveFixtures, loadManifestHacks } from '../utils';
 import './VAMEditor.scss';
-import * as configs from '../defaults/index'; 
+import configs from '../defaults/index'; 
 
 const theme = createMuiTheme({
   palette: {
@@ -306,7 +306,7 @@ class VAMEditor extends React.Component {
       selectedCanvas
     );
     const { lang, editorMode } = this.state;
-
+    console.log(configs, editorMode, configs[editorMode]);
     return (
       <MuiThemeProvider theme={theme}>
         <ManifestEditor
