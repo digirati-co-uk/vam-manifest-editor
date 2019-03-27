@@ -19,5 +19,12 @@ export default {
   },
   propertyFields: null,
   iiifResourceDefaults: {},
-  propertyPanel: null,
+  propertyPanel: {
+    selectionType: 'accordion',
+    selectionVisibility: {
+      null: ['Manifest'],
+      Canvas: ['Canvas', 'Manifest'],
+      Annotation: ['Annotation', 'Canvas', 'Manifest'],
+    },
+  }
 };

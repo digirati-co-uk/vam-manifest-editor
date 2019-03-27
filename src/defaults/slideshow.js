@@ -84,5 +84,12 @@ export default {
       behavior: ['layout-split', 'info-position-left'],
     },
   },
-  propertyPanel: null,
+  propertyPanel: {
+    selectionType: 'accordion',
+    selectionVisibility: {
+      null: ['Manifest'],
+      Canvas: ['Canvas', 'Manifest'],
+      Annotation: ['Annotation', 'Canvas', 'Manifest'],
+    },
+  },
 };
