@@ -30,6 +30,8 @@ const LoadManifestModal = ({
       <DialogContent>
         <IIIFCollectionExplorer 
           url={collectionURL} 
+          autoSelectIfManifestFromUrl={true}
+          canvasListDroppableId='loadList'
           onItemSelect={(resource=>{
             if (resource.type === "Manifest") {
               fetch(resource.id)
