@@ -19,11 +19,24 @@ const saveAnnotatedZoom = manifest => {
               title = `<h2 class="annotatedzoom-annotation-detail__label">${item.label.en.join('\n')}</h2>`;
               delete itemCopy.label;
             }
-            
+            const value = (item.body.value || '').replace(/(?:\<p\>)?\<img([^>]+)>(?:\<\/p\>)?/g, (match, props) => {
+              
+              const imageProperties = (props.endsWith('/') ? props.substring(0, props.length-1) : props)
+                  .trim()
+                  .split(/\s+/)
+                  .reduce((_props, kv) => {
+                    const [key, value] = kv.split("=");
+                    _props[key] = value
+                    return _props;
+                  }, {});
+              imageProperties['class'] = '"annotatedzoom-annotation-detail__image"';
+              const allProps = Object.entries(imageProperties).map((kv)=> kv.join('=')).join(' ');
+              return `<img ${allProps}/>`;
+            })
             itemCopy.body.value = `
               ${title}
               <div class="annotatedzoom-annotation-detail__content">
-                ${item.body.value}
+                ${value}
                 ${credits}
               </div>
             `.replace(/\s+/g,' ');
