@@ -43,17 +43,6 @@ import  { saveFixtures, loadManifestHacks } from '../utils';
 import './VAMEditor.scss';
 import configs from '../defaults/index'; 
 
-const isLocalhost = () => 
-  window.location.hostname === "localhost" ||
-  window.location.hostname === "127.0.0.1" ||
-  window.location.hostname === "0.0.0.0"   
-
-// Temporary override until the settings panel hasn't been funded.
-window.rootManifestUrl = isLocalhost()
-  ? 'http://localhost:8181/p3/'
-  //: 'https://nhbv322uy3.execute-api.eu-west-1.amazonaws.com/staging/p3/';
-  : 'https://iiif-collection.ch.digtest.co.uk/p3/';
-
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -408,7 +397,7 @@ class VAMEditor extends React.Component {
                   />
                   <IIIFCollectionExplorer
                     title="IIIF Collection Explorer"
-                    url={window.rootManifestUrl}
+                    url={config.rootManifestUrl}
                   />
                 </TabPanel>
               </Layout.Right>
@@ -435,7 +424,7 @@ class VAMEditor extends React.Component {
         <LoadManifestModal
           open={this.state.loadManifestDialogOpen}
           handleClose={this.toggleLoadManifestDialog}
-          collectionURL={window.rootManifestUrl}
+          collectionURL={config.rootManifestUrl}
           loadManifest={this.loadManifest}
         />
         <PreviewModal
