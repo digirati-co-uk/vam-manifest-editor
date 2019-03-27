@@ -1,16 +1,7 @@
 import React from 'react';
-
-import {
-    Manifest,
-    Fullscreen,
-    RangeNavigationProvider,
-    //withBemClass,
-    //Responsive,
-	} from '@canvas-panel/core';
-	
+import { Manifest, RangeNavigationProvider } from '@canvas-panel/core';
+import { Slide } from '@canvas-panel/slideshow';	
 import { transformSlideCanvas } from '../utils';
-
-import { Slide } from '@canvas-panel/slideshow';
 
 const SlideEditor = ({ manifestJSON, canvasId }) => {
 	// Dumb way to update after edit, sorry, deadlines...
@@ -65,10 +56,6 @@ const SlideEditor = ({ manifestJSON, canvasId }) => {
 					const {
 						manifest,
 						canvas,
-						canvasList,
-						currentIndex,
-						previousRange,
-						nextRange,
 						region,
 					} = rangeProps;
 					return (

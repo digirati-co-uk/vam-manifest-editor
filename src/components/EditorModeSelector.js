@@ -1,4 +1,5 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import { Select , MenuItem, withStyles } from '@material-ui/core';
 
 const style = theme => {
@@ -16,7 +17,7 @@ const EditorModeSelector = ({ classes, selected, onSelect }) => (
   <Select 
     value={selected}
     onChange={onSelect}
-    label="editor version"
+    label="editor mode"
     margin="none"
     variant="outlined"
     inputProps={{
@@ -31,5 +32,14 @@ const EditorModeSelector = ({ classes, selected, onSelect }) => (
     <MenuItem value="default">IIIF Manifest Editor (No extension)</MenuItem>
   </Select>
 );
+
+EditorModeSelector.propTypes = {
+  /** jss classes  */
+  classes: PropTypes.object,
+  /** selected mode */
+  selected: PropTypes.string,
+  /** on select callback */
+  onSelect: PropTypes.func,
+}
 
 export default withStyles(style)(EditorModeSelector);

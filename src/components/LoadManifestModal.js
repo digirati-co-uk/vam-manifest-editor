@@ -52,9 +52,13 @@ const LoadManifestModal = ({
 };
 
 LoadManifestModal.propTypes = {
+  /** The starting point for the collection explorer components */
   collectionURL: PropTypes.string,
+  /** is the modal open */
   open: PropTypes.bool,
+  /** on close callback */
   handleClose: PropTypes.func,
+  /** callback to load the manifest */
   loadManifest: PropTypes.func,
 };
   

@@ -1,12 +1,10 @@
 import React from 'react';
-import * as classnames from 'classnames';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import {
   LibraryAdd,
   LibraryBooks,
   SaveAlt,
   Visibility,
-  Input,
 } from '@material-ui/icons';
 import { withSnackbar } from 'notistack';
 
@@ -24,9 +22,6 @@ import {
   ManifestEditorAppBar as AppBar,
   ApplicationLayout as Layout,
   AppBarButton,
-  // annotation 
-  TextLayoutViewFocus,
-  ImagePainting,
   // utils
   renderResource,
   queryResourceById,
@@ -42,22 +37,22 @@ import {
 import EditorModeSelector from '../components/EditorModeSelector';
 import LoadManifestModal from '../components/LoadManifestModal';
 import SaveManifestModal from '../components/SaveManifestModal';
-import PreviewModal from '../components/PreviewModal';
+import PreviewModal from '../components/Preview/PreviewModal';
 import SlideEditor from '../components/SlideEditor';
-import TextualBodyDescribing from '../annotation/TextualBodyDescribing';
 import  { saveFixtures, loadManifestHacks } from '../utils';
 import './VAMEditor.scss';
+import configs from '../defaults/index'; 
 
 const isLocalhost = () => 
   window.location.hostname === "localhost" ||
   window.location.hostname === "127.0.0.1" ||
   window.location.hostname === "0.0.0.0"   
+
 // Temporary override until the settings panel hasn't been funded.
 window.rootManifestUrl = isLocalhost()
   ? 'http://localhost:8181/p3/'
   //: 'https://nhbv322uy3.execute-api.eu-west-1.amazonaws.com/staging/p3/';
   : 'https://iiif-collection.ch.digtest.co.uk/p3/';
-const emptyFn = () => {};
 
 const theme = createMuiTheme({
   palette: {
@@ -81,67 +76,13 @@ const theme = createMuiTheme({
   },
 });
 
-
-const SLIDESHOW_BEHAVIOURS = {
-  Canvas: {
-    groups: [
-      {
-        label: 'layout', 
-        values: ['layout-overlay', 'layout-split'],
-      },
-      {
-        label: 'info position',
-        values: [
-          'info-position-left',
-          'info-position-right',
-          'info-position-center',
-        ],
-      },
-      //'*',
-    ],
-  },
-};
-
-const SLIDESHOW_PROPERTIES_LABEL = {
-  'Properties.Annotation': 'Item',
-  'Properties.Canvas': 'Slide',
-  'Properties.Manifest': 'Slideshow',
-  'Canvas.Summary': 'Short description',
-  'Canvas.Label': 'Title',
-  'Canvas.RequiredStatement': 'Legal notice',
-  'Canvas.RequiredStatement.Label': 'Title',
-  'Canvas.RequiredStatement.Value': 'Body',
-  'Canvas.Metadata': 'Additional info',
-  'Canvas.Metadata.Label': 'Title',
-  'Canvas.Behaviors': 'Positioning',
-  'NewAnnotationForm.fitCanvasToContent': 'add',
-  'NewAnnotationForm.fitContentToCanvas': 'add',
-  'Canvas.behavior.label.layout': 'Slide layout',
-  'Canvas.behavior.value.layout-overlay': 'text overlay',
-  'Canvas.behavior.value.layout-split': 'split',
-  'Canvas.behavior.value.info-position-left': 'left',
-  'Canvas.behavior.value.info-position-center': 'center',
-  'Canvas.behavior.value.info-position-right': 'right',
-};
-
-const ANNOTATED_ZOOM_PROPERTIES_LABEL = {
-  'NewAnnotationForm.fitCanvasToContent': 'add',
-  'NewAnnotationForm.fitContentToCanvas': 'add',
-};
-
-const UI_LABELS = {
-  'slideshow': SLIDESHOW_PROPERTIES_LABEL,
-  'annotated-zoom': ANNOTATED_ZOOM_PROPERTIES_LABEL,
-};
-
 class VAMEditor extends React.Component {
-  
 
   constructor(props) {
     super(props);
     const initialNewManifest = this.newManifest();
-    const crashPrevention = JSON.parse(localStorage.getItem('autoSave'));
-    this.state = crashPrevention ? crashPrevention : {
+    const stateToRestore = JSON.parse(localStorage.getItem('autoSave'));
+    this.state = stateToRestore || {
       rootResource: initialNewManifest,
       selectedIdsByType: {
         Canvas: initialNewManifest.items[0].id,
@@ -376,76 +317,7 @@ class VAMEditor extends React.Component {
       selectedCanvas
     );
     const { lang, editorMode } = this.state;
-    const annotationConfig = {
-      'Image::painting': ImagePainting,
-    };
-    const annotationFormButtons = {
-      NewAnnotationForm: ['dismiss', 'fitCanvasToContent'],
-    };
-    if (editorMode !== 'slideshow') {
-      annotationConfig['TextualBody::describing'] =  TextualBodyDescribing;
-      annotationFormButtons['TextualBodyDescribing.NewAnnotationForm'] = ['dismiss', 'fitContentToCanvas'];
-    }
-    if (editorMode !== 'annotated-zoom') {
-      annotationConfig['TextualBody::layout-viewport-focus'] = TextLayoutViewFocus;
-      annotationFormButtons['TextLayoutViewFocus.NewAnnotationForm'] = ['dismiss', 'fitContentToCanvas'];
-    }
-    let propertyFields = null; 
-    if (editorMode === 'slideshow') {
-      propertyFields = {
-        Manifest: [
-          'label',
-          'summary',
-          'requiredStatement',
-          'metadata',
-          'navDate',
-          'rights',
-        ],
-        Canvas: [
-          'behavior',
-          'label',
-          'summary',
-          'requiredStatement',
-        ],
-        Annotation: [
-          'label',
-          'summary',
-        ],
-        TextPropertiesForm: ['body.id', 'body.value'],
-        ImagePropertiesForm: [
-          'body.service.id',
-          'body.id',
-          'thumbnail.0.service.id',
-          'thumbnail.0.id',
-        ],
-      };
-    }
-    if (editorMode === 'annotated-zoom') {
-      propertyFields = {
-        Manifest: [
-          'label',
-          'summary',
-          'requiredStatement',
-          'metadata',
-          'navDate',
-          'rights',
-        ],
-        Canvas: [
-          'label',
-        ],
-        Annotation: [
-          'label',
-          'requiredStatement',
-        ],
-        TextPropertiesForm: ['body.id', 'body.value'],
-        ImagePropertiesForm: [
-          'body.service.id',
-          'body.id',
-          'thumbnail.0.service.id',
-          'thumbnail.0.id',
-        ],
-      };
-    }
+
     return (
       <MuiThemeProvider theme={theme}>
         <ManifestEditor
@@ -454,24 +326,7 @@ class VAMEditor extends React.Component {
             appBarButtonStyle: 'icon-and-label',
             hideHeaderForSingleTab: true,
           }}
-          annotation={annotationConfig}
-          metaOntology={UI_LABELS[editorMode] || {}}
-          behavior={editorMode === 'slideshow' ? SLIDESHOW_BEHAVIOURS:  {}}
-          annotationFormButtons={annotationFormButtons}
-          propertyFields={propertyFields}
-          iiifResourceDefaults={{
-            Canvas: {
-              behavior: ['layout-split', 'info-position-left'],
-            },
-          }}
-          propertyPanel={editorMode === 'annotated-zoom' && {
-            selectionType: 'accordion',
-            selectionVisibility: {
-              null: ['Manifest'],
-              Canvas: ['Manifest'],
-              Annotation: ['Annotation', 'Manifest'],
-            },
-          }}
+          {...configs[editorMode]}
         >
           <Layout>
             <AppBar titleComponent={
@@ -509,11 +364,6 @@ class VAMEditor extends React.Component {
                 onClick={this.toggleItemPreview}
                 icon={<Visibility />}
               />
-              {/* <AppBarButton
-                text="Load Manifest"
-                onClick={this.toggleLoadManifestDialog2}
-                icon={<Input />}
-              /> */}
             </AppBar>
             <Layout.Middle>
               <Layout.Left>

@@ -1,14 +1,10 @@
 import * as React from 'react';
 import { InsertComment } from '@material-ui/icons';
-
-
 import { 
   DefaultTooltip as Tooltip,
   ButtonWithTooltip,
   BaseAnnotation,
-  IIIFReducer,
   TextPropertiesForm,
-  //import IIIFReducer from '../reducers/iiif';
   addResource,
   renderResource,
   queryResourceById,

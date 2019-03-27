@@ -9,11 +9,11 @@ import {
   DialogActions,
   Button,
   TextField,
-  Snackbar,
 } from '@material-ui/core';
 import { LibraryBooks } from '@material-ui/icons';
 import { IIIFCollectionExplorer } from '@iiif-mec/core';
 import  { saveFixtures } from '../utils';
+
 const style = theme => ({
   titleBar: {
     padding: theme.spacing.unit,
@@ -21,14 +21,17 @@ const style = theme => ({
 })
 
 const SaveManifestModal = ({ 
+  classes,
   manifest,
   regenerateIds, 
   open, 
-  handleClose, 
-  classes,
+  handleClose,
   enqueueSnackbar,
 }) => {
   let manifestId = manifest.id;
+  // UX asked to modify the save id in order to get a proper folder whilst you saving.
+  // TODO: the final solution for these situations would be a custom/pluggable id 
+  // generator, but that's currently far outside the scope.
   if (manifestId.endsWith('/manifest')) {
     manifestId = manifestId.replace('/manifest', '') + '.json';
   }
@@ -37,6 +40,7 @@ const SaveManifestModal = ({
   const [url, setURL ] = useState(folderUrl);
   const [file, setFile] = useState(fileName);
   const didSave = () => {
+    //this is temporary until the persistence module fully developed
     window.lastPersist = new Date().getTime();
     handleClose();
     enqueueSnackbar('Save successful.', { variant: 'success'});
@@ -105,8 +109,26 @@ const SaveManifestModal = ({
   );
 }
 
+SaveManifestModal.protoTypes = {
+  /** JSS classes */
+  classes: PropTypes.object,
+  /** The manifest going to be saved */
+  manifest: PropTypes.any,
+  /** the function provides extra protection against id collision */
+  regenerateIds: PropTypes.func,
+  /** is modal open  */
+  open: PropTypes.bool,
+  /** close handler */
+  handleClose: PropTypes.func,
+  /** if passed a snackbar will be presented after both successful and unsuccessful actions */
+  enqueueSnackbar: PropTypes.func,
+};
+
 SaveManifestModal.defaultProps = {
+  open: false,
   enqueueSnackbar: () => {},
+  handleClose: () => {},
+  regenerateIds: () => {},
 };
 
 export default withStyles(style)(SaveManifestModal);
