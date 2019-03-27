@@ -1,4 +1,5 @@
-.page-outer strong,
-.page-outer b {
+/* to enable the bold in the patchwork annotation */ 
+.page-outer .patchwork-annotation-detail strong,
+.page-outer .patchwork-annotation-detail b {
     font-weight: bold;
 }
