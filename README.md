@@ -21,6 +21,29 @@ Start the development server:
 yarn start
 ```
 
+The local development server runs at port 5000. If that port has been already taken, the default port can be overriden from the command line using the `LIVE_SERVER_PORT` environment variable:
+
+```
+export LIVE_SERVER_PORT=5002 && yarn start
+```
+
+*NOTE*: This method will not always work for situations when you running multiple fesk-scrits based projects at the same time. For these scenarios, you can hard wire the port in the `package.json`
+
+```
+{
+  "name": "vam-manifest-editor",
+  "version": "1.0.17",
+  "description": "V&A Manifest Editor",
+  ...
+  "fesk": {
+    "port": 5004
+  },
+  ...
+}
+```
+
+
+
 ## Build for Production 
 
 Start the development server:
