@@ -43,6 +43,9 @@ import  { saveFixtures, loadManifestHacks } from '../utils';
 import './VAMEditor.scss';
 import configs from '../defaults/index'; 
 
+// TODO: on monday, make the iiif-mec/core/URIGenerator receive this from the config instead of an exposed global... 
+window.rootManifestUrl = configs.rootManifestUrl;
+
 const theme = createMuiTheme({
   palette: {
     primary: {
