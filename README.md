@@ -21,7 +21,7 @@ Start the development server:
 yarn start
 ```
 
-The local development server runs at port 5000. If that port has been already taken, the default port can be overriden from the command line using the `LIVE_SERVER_PORT` environment variable:
+*Optional*: The local development server runs at port 5000. If that port has been already taken, the default port can be overriden from the command line using the `LIVE_SERVER_PORT` environment variable:
 
 ```
 export LIVE_SERVER_PORT=5002 && yarn start
