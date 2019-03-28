@@ -7,6 +7,12 @@ The project is a IIIF Manifest Editor implementation specific for `VAM-Slideshow
 https://vam-manifest-editor.netlify.com/
 
 
+## Requirements and dependencies
+
+- **nodejs** > 8.15.1
+- **yarn** > 1.7.0
+- **lerna** > 2.11.0
+
 ## Local development 
 
 Install pre-requirements:
@@ -124,5 +130,11 @@ server {
 ```
 
 
+## References
 
+[nodejs.org](https://nodejs.org/en/download/)
+
+[yarn](https://yarnpkg.com/en/docs/install)
+
+[lerna](https://lernajs.io/)
 
