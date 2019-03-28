@@ -89,8 +89,9 @@ const SaveManifestModal = ({
           Cancel
         </Button>
         <Button onClick={() => {
-            regenerateIds(url+file, () => {
-              fetch(url+file, {
+            const saveTolUrl = file.endsWith('.json') ? url+file : url+file+'.json';
+            regenerateIds(saveTolUrl, () => {
+              fetch(saveTolUrl, {
                   method: 'post',
                   headers: {
                       "Content-Type": "application/json",
