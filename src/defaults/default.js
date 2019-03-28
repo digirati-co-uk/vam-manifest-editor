@@ -1,7 +1,4 @@
-import {
-  ImagePainting,
-  TextLayoutViewFocus
-} from '@iiif-mec/core';
+import { ImagePainting, TextLayoutViewFocus } from '@iiif-mec/core';
 import TextualBodyDescribing from '../annotation/TextualBodyDescribing';
 
 export default {
@@ -14,7 +11,10 @@ export default {
   behavior: {},
   annotationFormButtons: {
     NewAnnotationForm: ['dismiss', 'fitCanvasToContent'],
-    'TextualBodyDescribing.NewAnnotationForm': ['dismiss', 'fitContentToCanvas'],
+    'TextualBodyDescribing.NewAnnotationForm': [
+      'dismiss',
+      'fitContentToCanvas',
+    ],
     'TextLayoutViewFocus.NewAnnotationForm': ['dismiss', 'fitContentToCanvas'],
   },
   propertyFields: null,
@@ -26,5 +26,5 @@ export default {
       Canvas: ['Canvas', 'Manifest'],
       Annotation: ['Annotation', 'Canvas', 'Manifest'],
     },
-  }
+  },
 };

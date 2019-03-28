@@ -5,10 +5,11 @@ import { PatchworkPlugin } from '@canvas-panel/patchwork-plugin';
 import { SlideShow } from '@canvas-panel/slideshow';
 
 const RenderManifest = ({ manifest, isDemoPage }) => {
-  const isAnnotatedZoom = 
-    manifest && 
-    manifest.behavior && 
-    manifest.behavior.filter(behavior=>behavior==='vam-annotated-zoom').length>0;
+  const isAnnotatedZoom =
+    manifest &&
+    manifest.behavior &&
+    manifest.behavior.filter(behavior => behavior === 'vam-annotated-zoom')
+      .length > 0;
 
   if (isAnnotatedZoom && isDemoPage) {
     return (
@@ -38,9 +39,7 @@ const RenderManifest = ({ manifest, isDemoPage }) => {
       </div>
     );
   } else {
-    return (
-      <SlideShow jsonLd={manifest} />
-    );
+    return <SlideShow jsonLd={manifest} />;
   }
 };
 

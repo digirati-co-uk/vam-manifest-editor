@@ -1,7 +1,4 @@
-import {
-  ImagePainting,
-  TextLayoutViewFocus
-} from '@iiif-mec/core';
+import { ImagePainting, TextLayoutViewFocus } from '@iiif-mec/core';
 
 export default {
   annotation: {
@@ -33,7 +30,7 @@ export default {
     Canvas: {
       groups: [
         {
-          label: 'layout', 
+          label: 'layout',
           values: ['layout-overlay', 'layout-split'],
         },
         {
@@ -45,12 +42,15 @@ export default {
           ],
         },
       ],
-    }
+    },
   },
   annotationFormButtons: {
-      NewAnnotationForm: ['dismiss', 'fitCanvasToContent'],
-      'TextualBodyDescribing.NewAnnotationForm': ['dismiss', 'fitContentToCanvas'],
-      'TextLayoutViewFocus.NewAnnotationForm': ['dismiss', 'fitContentToCanvas'],
+    NewAnnotationForm: ['dismiss', 'fitCanvasToContent'],
+    'TextualBodyDescribing.NewAnnotationForm': [
+      'dismiss',
+      'fitContentToCanvas',
+    ],
+    'TextLayoutViewFocus.NewAnnotationForm': ['dismiss', 'fitContentToCanvas'],
   },
   propertyFields: {
     Manifest: [
@@ -61,16 +61,8 @@ export default {
       'navDate',
       'rights',
     ],
-    Canvas: [
-      'behavior',
-      'label',
-      'summary',
-      'requiredStatement',
-    ],
-    Annotation: [
-      'label',
-      'summary',
-    ],
+    Canvas: ['behavior', 'label', 'summary', 'requiredStatement'],
+    Annotation: ['label', 'summary'],
     TextPropertiesForm: ['body.id', 'body.value'],
     ImagePropertiesForm: [
       'body.service.id',

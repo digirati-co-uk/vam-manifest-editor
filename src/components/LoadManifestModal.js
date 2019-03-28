@@ -10,12 +10,11 @@ import {
 import { IIIFCollectionExplorer } from '@iiif-mec/core';
 import { LibraryBooks } from '@material-ui/icons';
 
-
-const LoadManifestModal = ({ 
-  collectionURL, 
-  open, 
-  handleClose, 
-  loadManifest 
+const LoadManifestModal = ({
+  collectionURL,
+  open,
+  handleClose,
+  loadManifest,
 }) => {
   return (
     <Dialog
@@ -28,19 +27,19 @@ const LoadManifestModal = ({
     >
       <DialogTitle id="load-manifest-dialog-title">Load Manifest</DialogTitle>
       <DialogContent>
-        <IIIFCollectionExplorer 
-          url={collectionURL} 
+        <IIIFCollectionExplorer
+          url={collectionURL}
           autoSelectIfManifestFromUrl={true}
-          canvasListDroppableId='loadList'
-          onItemSelect={(resource=>{
-            if (resource.type === "Manifest") {
+          canvasListDroppableId="loadList"
+          onItemSelect={resource => {
+            if (resource.type === 'Manifest') {
               fetch(resource.id)
                 .then(response => response.json())
                 .then(response => loadManifest(response))
                 .catch(error => alert(error));
               return true;
             }
-          })}
+          }}
           manifestIcon={LibraryBooks}
         />
       </DialogContent>
@@ -63,6 +62,5 @@ LoadManifestModal.propTypes = {
   /** callback to load the manifest */
   loadManifest: PropTypes.func,
 };
-  
 
 export default LoadManifestModal;

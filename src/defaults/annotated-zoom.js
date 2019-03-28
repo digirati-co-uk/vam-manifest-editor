@@ -1,6 +1,4 @@
-import {
-  ImagePainting,
-} from '@iiif-mec/core';
+import { ImagePainting } from '@iiif-mec/core';
 import TextualBodyDescribing from '../annotation/TextualBodyDescribing';
 
 export default {
@@ -15,7 +13,10 @@ export default {
   behavior: {},
   annotationFormButtons: {
     NewAnnotationForm: ['dismiss', 'fitCanvasToContent'],
-    'TextualBodyDescribing.NewAnnotationForm': ['dismiss', 'fitContentToCanvas'],
+    'TextualBodyDescribing.NewAnnotationForm': [
+      'dismiss',
+      'fitContentToCanvas',
+    ],
   },
   propertyFields: {
     Manifest: [
@@ -26,13 +27,8 @@ export default {
       'navDate',
       'rights',
     ],
-    Canvas: [
-      'label',
-    ],
-    Annotation: [
-      'label',
-      'requiredStatement',
-    ],
+    Canvas: ['label'],
+    Annotation: ['label', 'requiredStatement'],
     TextPropertiesForm: ['body.id', 'body.value'],
     ImagePropertiesForm: [
       'body.service.id',

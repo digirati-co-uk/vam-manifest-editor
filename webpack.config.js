@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = new Config().extend('@fesk/scripts/webpack').merge({
   plugins: [
     new webpack.EnvironmentPlugin({
-      COLLECTION_SERVER: 'https://iiif-collection.ch.digtest.co.uk/p3/'
-    })
-  ]
+      COLLECTION_SERVER: 'https://iiif-collection.ch.digtest.co.uk/p3/',
+    }),
+  ],
 });

@@ -39,11 +39,11 @@ import LoadManifestModal from '../components/LoadManifestModal';
 import SaveManifestModal from '../components/SaveManifestModal';
 import PreviewModal from '../components/Preview/PreviewModal';
 import SlideEditor from '../components/SlideEditor';
-import  { saveFixtures, loadManifestHacks } from '../utils';
+import { saveFixtures, loadManifestHacks } from '../utils';
 import './VAMEditor.scss';
-import configs from '../defaults/index'; 
+import configs from '../defaults/index';
 
-// TODO: on monday, make the iiif-mec/core/URIGenerator receive this from the config instead of an exposed global... 
+// TODO: on monday, make the iiif-mec/core/URIGenerator receive this from the config instead of an exposed global...
 window.rootManifestUrl = configs.rootManifestUrl;
 
 const theme = createMuiTheme({
@@ -69,7 +69,6 @@ const theme = createMuiTheme({
 });
 
 class VAMEditor extends React.Component {
-
   constructor(props) {
     super(props);
     const initialNewManifest = this.newManifest();
@@ -89,7 +88,16 @@ class VAMEditor extends React.Component {
     };
   }
 
-  onUnload = (ev) => { // the method that will be used for both add and remove event
+  componentDidMount() {
+    window.addEventListener('beforeunload', this.onUnload);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', this.onUnload);
+  }
+
+  onUnload = ev => {
+    // the method that will be used for both add and remove event
     const result = (window.lastPersist || 0) < window.lastOperation;
     if (result) {
       ev.returnValue = result;
@@ -97,32 +105,33 @@ class VAMEditor extends React.Component {
     } else {
       ev.preventDefault();
     }
-  }
-
-  componentDidMount() {
-    window.addEventListener("beforeunload", this.onUnload);
-  }
-
-  componentWillUnmount() {
-      window.removeEventListener("beforeunload", this.onUnload);
-  }
-
+  };
 
   changeLanguage = lang => {
     this.dispatch(EditorReducer, { type: 'CHANGE_LANGUAGE', lang });
   };
 
   dispatch = (reducer, action, afterStateChange) => {
-    this.setState(reducer(this.state, action), ()=> {
+    this.setState(reducer(this.state, action), () => {
       const currentTime = new Date().getTime();
-      const lastSaveWasMoreThanTenSecondsBefore = (window.lastStateSave  || 0) < (currentTime - 10000);
-      if (lastSaveWasMoreThanTenSecondsBefore || action.type === 'LOAD_MANIFEST') {
-        localStorage.setItem('autoSave', JSON.stringify(Object.assign({}, this.state, {
-          loadManifestDialogOpen: false,
-          loadManifestDialogOpen2: false,
-          saveManifestDialogOpen: false,
-          previewModalOpen: false,
-        })));
+      const tenSecondsBefore = currentTime - 10000;
+      const lastSaveWasMoreThanTenSecondsBefore =
+        (window.lastStateSave || 0) < tenSecondsBefore;
+      if (
+        lastSaveWasMoreThanTenSecondsBefore ||
+        action.type === 'LOAD_MANIFEST'
+      ) {
+        localStorage.setItem(
+          'autoSave',
+          JSON.stringify(
+            Object.assign({}, this.state, {
+              loadManifestDialogOpen: false,
+              loadManifestDialogOpen2: false,
+              saveManifestDialogOpen: false,
+              previewModalOpen: false,
+            })
+          )
+        );
         window.lastStateSave = currentTime;
       }
       if (afterStateChange) {
@@ -176,13 +185,17 @@ class VAMEditor extends React.Component {
   };
 
   updateProperty = (target, property, lang, value, afterStateChange) => {
-    this.dispatch(IIIFReducer, {
-      type: 'UPDATE_RESOURCE',
-      options: {
-        id: target.id,
-        props: update(target, property, lang, value),
+    this.dispatch(
+      IIIFReducer,
+      {
+        type: 'UPDATE_RESOURCE',
+        options: {
+          id: target.id,
+          props: update(target, property, lang, value),
+        },
       },
-    }, afterStateChange);
+      afterStateChange
+    );
   };
 
   updateResource = (target, props) => {
@@ -196,10 +209,14 @@ class VAMEditor extends React.Component {
   };
 
   regenerateIds = (manifestId, afterStateChange) => {
-    this.dispatch(IIIFReducer, {
-      type: 'REGENERATE_IDS',
-      manifestId, 
-    }, afterStateChange);
+    this.dispatch(
+      IIIFReducer,
+      {
+        type: 'REGENERATE_IDS',
+        manifestId,
+      },
+      afterStateChange
+    );
   };
 
   saveProject = () => {
@@ -218,7 +235,11 @@ class VAMEditor extends React.Component {
 
   newProject = () => {
     if ((window.lastPersist || 0) < window.lastOperation) {
-      if (!window.confirm(`Your project hasn't been saved, would you like to continue`)) {
+      if (
+        !window.confirm(
+          `Your project hasn't been saved, would you like to continue`
+        )
+      ) {
         return;
       }
     }
@@ -235,21 +256,25 @@ class VAMEditor extends React.Component {
   };
 
   setEditorMode = (ev, selectedElement) => {
-    this.setState({
-      editorMode: selectedElement.props.value,
-    }, () => {
-      const behaviours = (this.state.rootResource.behavior || []).filter(item=>item!=='vam-slideshow' && item !=='vam-annotated-zoom'); 
-      if (selectedElement.props.value !== 'default') {
-        behaviours.push('vam-' + selectedElement.props.value);
+    this.setState(
+      {
+        editorMode: selectedElement.props.value,
+      },
+      () => {
+        const behaviours = (this.state.rootResource.behavior || []).filter(
+          item => item !== 'vam-slideshow' && item !== 'vam-annotated-zoom'
+        );
+        if (selectedElement.props.value !== 'default') {
+          behaviours.push('vam-' + selectedElement.props.value);
+        }
+        this.updateProperty(
+          this.state.rootResource,
+          'behavior',
+          null,
+          behaviours
+        );
       }
-      this.updateProperty(
-        this.state.rootResource, 
-        'behavior', 
-        null, 
-        behaviours
-      )
-    });
-
+    );
   };
 
   toggleLoadManifestDialog = () => {
@@ -276,9 +301,7 @@ class VAMEditor extends React.Component {
     });
   };
 
-
   loadManifest = json => {
-
     this.dispatch(IIIFReducer, {
       type: 'LOAD_MANIFEST',
       manifest: loadManifestHacks(convertToV3ifNecessary(json)),
@@ -286,13 +309,13 @@ class VAMEditor extends React.Component {
     if (this.state.loadManifestDialogOpen) {
       this.toggleLoadManifestDialog();
     }
-    if(this.state.loadManifestDialogOpen2) {
+    if (this.state.loadManifestDialogOpen2) {
       this.toggleLoadManifestDialog2();
     }
   };
 
   render() {
-    const { enqueueSnackbar } = this.props; 
+    const { enqueueSnackbar } = this.props;
     const canvases = this.state.rootResource
       ? this.state.rootResource.items
       : [];
@@ -321,9 +344,14 @@ class VAMEditor extends React.Component {
           {...configs[editorMode]}
         >
           <Layout>
-            <AppBar titleComponent={
-              <EditorModeSelector selected={editorMode} onSelect={this.setEditorMode} />
-            }>
+            <AppBar
+              titleComponent={
+                <EditorModeSelector
+                  selected={editorMode}
+                  onSelect={this.setEditorMode}
+                />
+              }
+            >
               <AppBarButton
                 text="New"
                 onClick={this.newProject}
@@ -371,9 +399,13 @@ class VAMEditor extends React.Component {
                 />
               </Layout.Left>
               <Layout.Center>
-                {editorMode === 'slideshow' && (!selectedAnnotation||(selectedAnnotation && selectedAnnotation.motivation !== 'layout-viewport-focus')) ? (
-                  <SlideEditor 
-                    manifestJSON={this.state.rootResource} 
+                {editorMode === 'slideshow' &&
+                (!selectedAnnotation ||
+                  (selectedAnnotation &&
+                    selectedAnnotation.motivation !==
+                      'layout-viewport-focus')) ? (
+                  <SlideEditor
+                    manifestJSON={this.state.rootResource}
                     canvasId={this.state.selectedIdsByType.Canvas}
                   />
                 ) : (

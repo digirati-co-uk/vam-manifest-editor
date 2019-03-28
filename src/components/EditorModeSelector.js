@@ -1,27 +1,27 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import { Select , MenuItem, withStyles } from '@material-ui/core';
+import { Select, MenuItem, withStyles } from '@material-ui/core';
 
 const style = theme => {
-  return ({
+  return {
     input: {
-      color: theme.palette.secondary.main
+      color: theme.palette.secondary.main,
     },
     icon: {
-      fill: theme.palette.secondary.main
+      fill: theme.palette.secondary.main,
     },
-  })
+  };
 };
 
 const EditorModeSelector = ({ classes, selected, onSelect }) => (
-  <Select 
+  <Select
     value={selected}
     onChange={onSelect}
     label="editor mode"
     margin="none"
     variant="outlined"
     inputProps={{
-      className: classes.input
+      className: classes.input,
     }}
     classes={{
       icon: classes.icon,
@@ -40,6 +40,6 @@ EditorModeSelector.propTypes = {
   selected: PropTypes.string,
   /** on select callback */
   onSelect: PropTypes.func,
-}
+};
 
 export default withStyles(style)(EditorModeSelector);

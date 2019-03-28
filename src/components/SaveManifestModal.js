@@ -12,39 +12,42 @@ import {
 } from '@material-ui/core';
 import { LibraryBooks } from '@material-ui/icons';
 import { IIIFCollectionExplorer } from '@iiif-mec/core';
-import  { saveFixtures } from '../utils';
+import { saveFixtures } from '../utils';
 
 const style = theme => ({
   titleBar: {
     padding: theme.spacing.unit,
-  }
-})
+  },
+});
 
-const SaveManifestModal = ({ 
+const SaveManifestModal = ({
   classes,
   manifest,
-  regenerateIds, 
-  open, 
+  regenerateIds,
+  open,
   handleClose,
   enqueueSnackbar,
 }) => {
   let manifestId = manifest.id;
   // UX asked to modify the save id in order to get a proper folder whilst you saving.
-  // TODO: the final solution for these situations would be a custom/pluggable id 
+  // TODO: the final solution for these situations would be a custom/pluggable id
   // generator, but that's currently far outside the scope.
   if (manifestId.endsWith('/manifest')) {
     manifestId = manifestId.replace('/manifest', '') + '.json';
   }
-  const folderUrl = manifestId.substring(0, manifestId.lastIndexOf("/") + 1);
-  const fileName = manifestId.substring(manifestId.lastIndexOf("/") + 1, manifestId.length);
-  const [url, setURL ] = useState(folderUrl);
+  const folderUrl = manifestId.substring(0, manifestId.lastIndexOf('/') + 1);
+  const fileName = manifestId.substring(
+    manifestId.lastIndexOf('/') + 1,
+    manifestId.length
+  );
+  const [url, setURL] = useState(folderUrl);
   const [file, setFile] = useState(fileName);
   const didSave = () => {
     //this is temporary until the persistence module fully developed
     window.lastPersist = new Date().getTime();
     handleClose();
-    enqueueSnackbar('Save successful.', { variant: 'success'});
-  }
+    enqueueSnackbar('Save successful.', { variant: 'success' });
+  };
   return (
     <Dialog
       open={open}
@@ -57,29 +60,32 @@ const SaveManifestModal = ({
       <DialogTitle id="load-manifest-dialog-title">Save Manifest</DialogTitle>
       <DialogContent>
         <div className={classes.titleBar}>
-          <TextField label="Manifest Name" defaultValue={fileName} onChange={(ev=>setFile(ev.target.value))} style={{width: '50%'}}/>
+          <TextField
+            label="Manifest Name"
+            defaultValue={fileName}
+            onChange={ev => setFile(ev.target.value)}
+            style={{ width: '50%' }}
+          />
         </div>
-        <IIIFCollectionExplorer 
-          url={folderUrl} 
-          onItemSelect={
-            (resource=>{
-              if (resource.type === "Manifest") {
-                fetch(resource.id, {
-                    method: 'post',
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(manifest)
-                })
-                  .then(response => response.json())
-                  .then(didSave)
-                  .catch(error => enqueueSnackbar(error, { variant: 'error'}));
-                return true;
-              } else if (resource.type === 'Collection') {
-                setURL(resource.id);
-              }
-            })
-          }
+        <IIIFCollectionExplorer
+          url={folderUrl}
+          onItemSelect={resource => {
+            if (resource.type === 'Manifest') {
+              fetch(resource.id, {
+                method: 'post',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(manifest),
+              })
+                .then(response => response.json())
+                .then(didSave)
+                .catch(error => enqueueSnackbar(error, { variant: 'error' }));
+              return true;
+            } else if (resource.type === 'Collection') {
+              setURL(resource.id);
+            }
+          }}
           onResourceLoaded={loadedResourceURL => setURL(loadedResourceURL)}
           manifestIcon={LibraryBooks}
         />
@@ -88,27 +94,32 @@ const SaveManifestModal = ({
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={() => {
-            const saveTolUrl = file.endsWith('.json') ? url+file : url+file+'.json';
+        <Button
+          onClick={() => {
+            const saveTolUrl = file.endsWith('.json')
+              ? url + file
+              : url + file + '.json';
             regenerateIds(saveTolUrl, () => {
               fetch(saveTolUrl, {
-                  method: 'post',
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(saveFixtures(manifest))
+                method: 'post',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(saveFixtures(manifest)),
               })
                 .then(response => response.json())
                 .then(didSave)
-                .catch(error => enqueueSnackbar(error, { variant: 'error'}));
+                .catch(error => enqueueSnackbar(error, { variant: 'error' }));
             });
-        }} color="primary">
+          }}
+          color="primary"
+        >
           Save
         </Button>
       </DialogActions>
     </Dialog>
   );
-}
+};
 
 SaveManifestModal.protoTypes = {
   /** JSS classes */
