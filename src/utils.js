@@ -7,7 +7,11 @@ const saveAnnotatedZoom = manifest => {
         .map(item => {
           let credits = '';
           const itemCopy = JSON.parse(JSON.stringify(item));
-          if (item.requiredStatement && item.requiredStatement.value.en) {
+          if (
+            item.requiredStatement &&
+            item.requiredStatement.value &&
+            item.requiredStatement.value.en
+          ) {
             const _credits = item.requiredStatement.value.en.join('\n');
             credits = `<p class="annotatedzoom-annotation-detail__credit">${_credits}</p>`;
             delete itemCopy.requiredStatement;
