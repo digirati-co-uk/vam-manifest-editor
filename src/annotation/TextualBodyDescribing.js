@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { InsertComment } from '@material-ui/icons';
-import { 
+import {
   DefaultTooltip as Tooltip,
   ButtonWithTooltip,
   BaseAnnotation,
@@ -13,12 +13,9 @@ import {
 
 export default class TextualBodyDescribing extends BaseAnnotation {
   static formName = 'TextualBodyDescribing';
-  static contentRenderer = annotation => ('');
+  static contentRenderer = annotation => '';
 
-  static button = ({
-    title = 'Text Annotation /w describing',
-    ...props
-  }) => (
+  static button = ({ title = 'Text Annotation /w describing', ...props }) => (
     <ButtonWithTooltip title={title} {...props}>
       <InsertComment />
     </ButtonWithTooltip>
@@ -45,7 +42,10 @@ export default class TextualBodyDescribing extends BaseAnnotation {
     add: ({ state, dispatch }, options) => {
       if (state.selectedIdsByType.Canvas) {
         const current = TextualBodyDescribing;
-        const {width, height} = queryResourceById(state.selectedIdsByType.Canvas, state.rootResource);
+        const { width, height } = queryResourceById(
+          state.selectedIdsByType.Canvas,
+          state.rootResource
+        );
         addResource(
           state,
           dispatch,
@@ -54,7 +54,7 @@ export default class TextualBodyDescribing extends BaseAnnotation {
             props: {
               motivation: 'describing',
               body: current.defaultBody,
-              width, 
+              width,
               height,
             },
           }),
