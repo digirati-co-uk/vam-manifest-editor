@@ -7,7 +7,7 @@ import { SnackbarProvider } from 'notistack';
 
 const App = () => (
   <SnackbarProvider maxStack={3}>
-      <VAMEditor />
+    <VAMEditor />
   </SnackbarProvider>
 );
 
