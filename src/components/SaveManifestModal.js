@@ -76,7 +76,7 @@ const SaveManifestModal = ({
                 headers: {
                   'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(manifest),
+                body: JSON.stringify(saveFixtures(manifest)),
               })
                 .then(response => response.json())
                 .then(didSave)
