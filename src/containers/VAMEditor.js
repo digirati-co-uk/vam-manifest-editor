@@ -188,10 +188,12 @@ class VAMEditor extends React.Component {
     this.dispatch(
       IIIFReducer,
       {
-        type: 'UPDATE_RESOURCE',
+        type: 'UPDATE_RESOURCE_PROPERTY',
         options: {
-          id: target.id,
-          props: update(target, property, lang, value),
+          target,
+          property,
+          lang,
+          value,
         },
       },
       afterStateChange
