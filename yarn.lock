@@ -1233,10 +1233,10 @@
     webpack-config "^7.5.0"
     webpack-manifest-plugin "2.0.4"
 
-"@iiif-mec/core@1.2.2-19", "@iiif-mec/core@^1.2.2-19":
-  version "1.2.2-19"
-  resolved "https://registry.yarnpkg.com/@iiif-mec/core/-/core-1.2.2-19.tgz#958ae36311ceab581ee6b466bf2a5f6cad0c1d1e"
-  integrity sha512-8VH5zH6H2hgR8xud7WvrySz5MnhQbpYxo/zdYIrIaDyGqDgn2eLcygGx8pl4Dep6CZQHTyEv9Bv+/gFVq0uJdw==
+"@iiif-mec/core@1.2.2-20", "@iiif-mec/core@^1.2.2-20":
+  version "1.2.2-20"
+  resolved "https://registry.yarnpkg.com/@iiif-mec/core/-/core-1.2.2-20.tgz#6cf362f479fe4ef0c8cd173e2560c5c434ba529d"
+  integrity sha512-yVfJbnvKu+m9ZNtcokXmZY9fpAKwEgvohB6UDNLWCZtFjDN7vMu7CO/blFHtQmX5QGgVU0Keh/be4cbVJzi5Ww==
   dependencies:
     "@babel/preset-react" "^7.0.0"
     "@canvas-panel/core" "^0.2.0"
@@ -1269,10 +1269,10 @@
     throttle-debounce "^2.1.0"
     webpack-merge "^4.2.1"
 
-"@iiif-mec/experience-editor@1.2.2-19":
-  version "1.2.2-19"
-  resolved "https://registry.yarnpkg.com/@iiif-mec/experience-editor/-/experience-editor-1.2.2-19.tgz#b19cfde4a522a24f399c0df54ff8d37187bcba4b"
-  integrity sha512-Etj6kooFwRe3iN93PWek3DBotqFw0IjudYOnD0H+bFLAvcd560CAif1bZMAtVe9bfcRXAZByEs8VQE7vG0bYrw==
+"@iiif-mec/experience-editor@1.2.2-20":
+  version "1.2.2-20"
+  resolved "https://registry.yarnpkg.com/@iiif-mec/experience-editor/-/experience-editor-1.2.2-20.tgz#354b77415fc2c2c3ab3acbf0b126d12a0b9bafda"
+  integrity sha512-9t47ApbCQ1rZ+sbHIv6DyoDb2is5ATSryPPUXrLkqWTRihWRBPL/Hg6tMn1hLo2digMksZA4Mkyd1UVYZA3/kg==
   dependencies:
     "@babel/preset-react" "^7.0.0"
     "@canvas-panel/core" "^0.2.0"
@@ -1282,7 +1282,7 @@
     "@emotion/core" "^10.0.7"
     "@fesk/export-common" "1.2.1"
     "@fesk/react-bem" "^1.1.2"
-    "@iiif-mec/core" "^1.2.2-19"
+    "@iiif-mec/core" "^1.2.2-20"
     "@material-ui/core" "3.6.1"
     "@material-ui/icons" "3.0.1"
     babel-plugin-transform-class-properties "^6.24.1"
