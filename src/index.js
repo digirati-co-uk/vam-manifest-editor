@@ -1,14 +1,32 @@
-import React from 'react';
+import * as React from 'react';
 import { render } from 'react-dom';
+import { ExperienceEditorAppWSnackbar } from '@iiif-mec/experience-editor';
+import { createMuiTheme } from '@material-ui/core';
+import { default as configs } from './defaults';
 
-//Start vna manifest editor
-import VAMEditor from './containers/VAMEditor';
-import { SnackbarProvider } from 'notistack';
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#000',
+      contrastText: '#ff9a00',
+    },
+    secondary: {
+      main: '#ff9a00',
+      contrastText: '#000',
+    },
+  },
+  typography: {
+    fontSize: 12,
+    useNextVariants: true,
+  },
+  mixins: {
+    toolbar: {
+      minHeight: 36,
+    },
+  },
+});
 
-const App = () => (
-  <SnackbarProvider maxStack={3}>
-    <VAMEditor />
-  </SnackbarProvider>
+render(
+  <ExperienceEditorAppWSnackbar configs={configs} theme={theme} />,
+  document.getElementById('app')
 );
-
-render(<App />, document.getElementById('app'));
