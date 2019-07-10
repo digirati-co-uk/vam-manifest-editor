@@ -77,6 +77,7 @@ export COLLECTION_SERVER=http://somewhere.in.the.cloudz/p3 && yarn release
 
 Note: The hot-swap dev server only reads the value up while it is starting up.
 
+Also the base url for newly created manifests can be adjusted using `ROOT_MANIFEST_URL` environment variable using the same syntax as above.
 
 ## Integration
 
