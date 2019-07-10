@@ -1233,10 +1233,10 @@
     webpack-config "^7.5.0"
     webpack-manifest-plugin "2.0.4"
 
-"@iiif-mec/core@1.2.2-20", "@iiif-mec/core@^1.2.2-20":
-  version "1.2.2-20"
-  resolved "https://registry.yarnpkg.com/@iiif-mec/core/-/core-1.2.2-20.tgz#6cf362f479fe4ef0c8cd173e2560c5c434ba529d"
-  integrity sha512-yVfJbnvKu+m9ZNtcokXmZY9fpAKwEgvohB6UDNLWCZtFjDN7vMu7CO/blFHtQmX5QGgVU0Keh/be4cbVJzi5Ww==
+"@iiif-mec/core@1.2.2", "@iiif-mec/core@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@iiif-mec/core/-/core-1.2.2.tgz#98b27ff6732e98e544ab7ea787b98212f35c1bc5"
+  integrity sha512-KqrjKEKPJGAVwENJNP3ABu8LB2hTNscfFnLiKbrzwJPLeT7ZuUDKxLjPrKjtDdwkyUg5bLS7nuY+AHDtQyYIRQ==
   dependencies:
     "@babel/preset-react" "^7.0.0"
     "@canvas-panel/core" "^0.2.0"
@@ -1269,10 +1269,10 @@
     throttle-debounce "^2.1.0"
     webpack-merge "^4.2.1"
 
-"@iiif-mec/experience-editor@1.2.2-20":
-  version "1.2.2-20"
-  resolved "https://registry.yarnpkg.com/@iiif-mec/experience-editor/-/experience-editor-1.2.2-20.tgz#354b77415fc2c2c3ab3acbf0b126d12a0b9bafda"
-  integrity sha512-9t47ApbCQ1rZ+sbHIv6DyoDb2is5ATSryPPUXrLkqWTRihWRBPL/Hg6tMn1hLo2digMksZA4Mkyd1UVYZA3/kg==
+"@iiif-mec/experience-editor@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@iiif-mec/experience-editor/-/experience-editor-1.2.2.tgz#4081f506894d5cf856361f24780b427207e0cfe6"
+  integrity sha512-WLvQzZoPBtCVjqHfTcJUBjVaLkOVAuX6bU0WvKKPyVkp44NZ8PbbRU1zDBvnTqGCpMiNltLtd78fXYydWe9GKw==
   dependencies:
     "@babel/preset-react" "^7.0.0"
     "@canvas-panel/core" "^0.2.0"
@@ -1282,7 +1282,7 @@
     "@emotion/core" "^10.0.7"
     "@fesk/export-common" "1.2.1"
     "@fesk/react-bem" "^1.1.2"
-    "@iiif-mec/core" "^1.2.2-20"
+    "@iiif-mec/core" "^1.2.2"
     "@material-ui/core" "3.6.1"
     "@material-ui/icons" "3.0.1"
     babel-plugin-transform-class-properties "^6.24.1"
@@ -8602,14 +8602,7 @@ normalize-url@^3.0.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
   integrity sha512-U+JJi7duF1o+u2pynbp2zXDW2/PADgC30f0GsHZtRh+HOcXHnw137TrNlyxxRvWW5fjKd3bcLHPxofWuCjaeZg==
 
-notistack@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/notistack/-/notistack-0.5.1.tgz#a8b62586afdfbe4c2080d67ea034bf784711f520"
-  dependencies:
-    classnames "^2.2.6"
-    prop-types "^15.6.2"
-
-notistack@^0.8.2:
+notistack@^0.8.2, notistack@^0.8.8:
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/notistack/-/notistack-0.8.8.tgz#8b0e138420040b20bc1e3eec7033d96d763eb773"
   integrity sha512-PBv2SvHipPr4FEx9+szmIT+gMC4ica7HT8t73N/ZaXC94pEArb0rI8GtroSVi7n4XkI/Nbo1ODeilQjYT2d8dQ==

@@ -40,7 +40,7 @@
     "dotenv-webpack": "^1.7.0",
     "immer": "^1.8.0",
     "langs": "^2.0.0",
-    "notistack": "^0.5.1",
+    "notistack": "^0.8.8",
     "prop-types": "^15.6.2",
     "react": "16.8.6",
     "react-beautiful-dnd": "^10.0.2",
