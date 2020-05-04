@@ -1,6 +1,6 @@
 import React from 'react';
 import { Manifest, RangeNavigationProvider } from '@canvas-panel/core';
-import { Slide } from '@canvas-panel/slideshow';
+import Slide from '@digirati/vam-viewer/lib/ui-components/Slide/Slide.js';
 import { transformSlideCanvas } from '../utils';
 
 const SlideEditor = ({ manifestJSON, canvasId }) => {
