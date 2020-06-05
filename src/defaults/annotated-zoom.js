@@ -1,5 +1,4 @@
-import { ImagePainting } from '@iiif-mec/core';
-import TextualBodyDescribing from '../annotation/TextualBodyDescribing';
+import { ImagePainting, TextualBodyDescribing } from '@digirati/me-core';
 
 export default {
   annotation: {
