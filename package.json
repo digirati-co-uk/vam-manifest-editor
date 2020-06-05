@@ -33,7 +33,7 @@
     "webpack-config": "^7.5.0"
   },
   "dependencies": {
-    "@digirati/vam-viewer": "^1.2.1",
+    "@digirati/vam-viewer":  "^1.2.3",
     "@fesk/react-bem": "^1.1.2",
     "@digirati/me-core": "^1.0.0",
     "@digirati/me-experience-editor": "^1.0.1",
