@@ -1800,10 +1800,10 @@
     throttle-debounce "^2.1.0"
     webpack-merge "^4.2.1"
 
-"@digirati/me-experience-editor@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@digirati/me-experience-editor/-/me-experience-editor-1.0.1.tgz#7708b0800ba2857bb11254e312abffced2af9f27"
-  integrity sha512-Q0fXss26nisYEfxcBBlaAjD4xuelSAnTwywoSbANn+oODmcisbLfqD9WE16Y4F6/niBFikjplIputycIWNyXMg==
+"@digirati/me-experience-editor@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@digirati/me-experience-editor/-/me-experience-editor-1.0.2.tgz#2bcc27903c26c47514a296ac2d014042880f60a6"
+  integrity sha512-yD3suhWHZnRXoe6mkvaj8ioQiGDmufDFwqlta3xph2qt60cQmyU1J5no0bBvOc9WH9MzSzTwUsLZXJesLdGptA==
   dependencies:
     "@babel/preset-react" "^7.0.0"
     "@canvas-panel/core" "^0.2.0"
@@ -1843,7 +1843,7 @@
     throttle-debounce "^2.1.0"
     webpack-merge "^4.2.1"
 
-"@digirati/vam-viewer@^1.2.1", "@digirati/vam-viewer@^1.2.3":
+"@digirati/vam-viewer@^1.2.3":
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@digirati/vam-viewer/-/vam-viewer-1.2.3.tgz#18a73633e99bc250da6201ed828d7f162b1c5378"
   integrity sha512-8kebAFQpqJNFSBjWNy3/aIRAtar/kONvkug8Gkcb2Nsghrh4zYLi7mRHIrvapP/Z6cttj5rq73yQmouVwRs9kQ==
