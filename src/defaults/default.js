@@ -1,5 +1,8 @@
-import { ImagePainting, TextLayoutViewFocus } from '@iiif-mec/core';
-import TextualBodyDescribing from '../annotation/TextualBodyDescribing';
+import {
+  ImagePainting,
+  TextLayoutViewFocus,
+  TextualBodyDescribing,
+} from '@digirati/me-core';
 
 export default {
   annotation: {

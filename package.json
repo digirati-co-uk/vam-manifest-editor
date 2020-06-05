@@ -1,37 +1,42 @@
 {
-  "name": "vam-manifest-editor",
-  "version": "1.0.17",
-  "description": "V&A Manifest Editor",
-  "author": "Adam Meszaros<adam.meszaros@digirati.com>",
+  "name": "@digirati/me-experience-editor",
+  "version": "1.0.1",
+  "description": "Experience Editor Components",
+  "authors": [
+    "Kelsie Braidwood <kelsie.braidwood@digirati.com>",
+    "Stephen Fraser <stephen.fraser@digirati.com>"
+  ],
   "license": "MIT",
-  "private": true,
+  "main": "lib/index.js",
   "scripts": {
     "start": "fesk-start",
     "release": "NODE_ENV=production fesk-build",
     "build": "NODE_ENV=production fesk-build",
     "watch": "fesk-watch",
     "test": "jest --coverage",
-    "test:watch": "jest --coverage --watch"
+    "test:watch": "jest --coverage --watch",
+    "deploy": "yarn && NODE_ENV=production fesk-build && yarn _deploy",
+    "//": "========= PRIVATE SCRIPTS =========",
+    "_deploy": "netlify deploy --prod"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
-    "@fesk/scripts": "1.2.0-next.6f875fb9",
-    "@fesk/webpack-config": "1.2.0-next.6f875fb9",
+    "@fesk/scripts": "1.4.0-pr.ff65c8c1",
+    "@fesk/webpack-config": "1.3.0",
     "babel-core": "^7.0.0-bridge",
     "babel-jest": "^23.6.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
+    "immutability-helper": "^3.0.1",
     "jest": "^23.6.0",
     "webpack-config": "^7.5.0"
   },
   "dependencies": {
-    "@canvas-panel/core": "^0.1.1",
-    "@canvas-panel/full-page-plugin": "^0.1.1",
-    "@canvas-panel/patchwork-plugin": "^0.1.1",
-    "@canvas-panel/slideshow": "^0.1.1",
+    "@digirati/vam-viewer": "^1.2.1",
     "@fesk/react-bem": "^1.1.2",
-    "@iiif-mec/core": "^1.0.29",
+    "@digirati/me-core": "^1.0.0",
+    "@digirati/me-experience-editor": "^1.0.1",
     "@material-ui/core": "^3.6.1",
     "@material-ui/icons": "^3.0.1",
     "classnames": "^2.2.6",
@@ -39,19 +44,28 @@
     "dotenv-webpack": "^1.7.0",
     "immer": "^1.8.0",
     "langs": "^2.0.0",
-    "notistack": "^0.5.1",
+    "notistack": "^0.8.8",
     "prop-types": "^15.6.2",
-    "react": "16.8.2",
+    "react": "^16.12.0",
     "react-beautiful-dnd": "^10.0.2",
     "react-container-dimensions": "^1.4.1",
-    "react-dom": "16.8.2",
+    "react-dom": "^16.12.0",
     "react-dropzone": "7.0.1",
     "react-input-range": "^1.3.0",
     "react-lazy-images": "^1.1.0",
+    "react-quill": "^1.3.3",
     "react-rnd": "^9.0.4",
     "react-scroll-wheel-handler": "^1.0.6",
     "react-virtualized": "^9.21.0",
     "throttle-debounce": "^2.1.0"
+  },
+  "fesk": {
+    "port": 5501,
+    "metalsmith": {
+      "nunjucks": {
+        "liveServerPort": 35738
+      }
+    }
   },
   "jest": {
     "transform": {

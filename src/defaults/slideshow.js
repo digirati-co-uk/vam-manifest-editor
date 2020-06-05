@@ -1,4 +1,4 @@
-import { ImagePainting, TextLayoutViewFocus } from '@iiif-mec/core';
+import { ImagePainting, TextLayoutViewFocus } from '@digirati/me-core';
 
 export default {
   annotation: {
