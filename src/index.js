@@ -5,6 +5,14 @@ import { ExperienceEditorApp } from '@digirati/me-experience-editor';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { SnackbarProvider } from 'notistack';
 import { default as configs } from './defaults';
+import AppBarButton from '@digirati/me-core/lib/components/AppBarButton/AppBarButton';
+import LoadIcon from '@digirati/me-experience-editor/lib/components/LoadIcon';
+import SaveIcon from '@digirati/me-experience-editor/lib/components/SaveIcon';
+import LibraryAdd from '@material-ui/icons/LibraryAdd';
+import SaveAlt from '@material-ui/icons/SaveAlt';
+import Visibility from '@material-ui/icons/Visibility';
+import GridOnIcon from '@digirati/me-experience-editor/lib/components/GridOnIcon';
+import GridOffIcon from '@digirati/me-experience-editor/lib/components/GridOffIcon';
 
 const theme = createMuiTheme({
   palette: {
@@ -34,6 +42,61 @@ class VAMManifestEditor extends ExperienceEditorApp {
       {this.renderProperties(panelProps)}
       {this.renderCollectionExplorer(panelProps)}
     </TabPanel>
+  );
+
+  renderAppBarButtons = () => (
+    <React.Fragment>
+      <AppBarButton
+        text="New Manifest"
+        onClick={this.newProject}
+        icon={<LibraryAdd />}
+      />
+      <AppBarButton
+        text="Load Manifest"
+        onClick={this.toggleLoadManifestDialog}
+        icon={<LoadIcon />}
+      />
+      {this.state.editorMode !== 'default' && (
+        <AppBarButton
+          text="Save"
+          onClick={this.toggleSaveManifestDialog}
+          icon={<SaveIcon />}
+        />
+      )}
+      <AppBarButton
+        text="Download JSON"
+        onClick={this.saveProject}
+        icon={<SaveAlt />}
+      />
+      {(this.state.editorMode === 'default' ||
+        this.state.editorMode === 'exhibitionPreview') && (
+        <AppBarButton
+          text="Preview JSON"
+          onClick={this.togglePreviewDialog}
+          icon={<Visibility />}
+        />
+      )}
+      {this.props.preview === 'vam' && (
+        <AppBarButton
+          text="Preview"
+          onClick={this.toggleItemPreview}
+          icon={<Visibility />}
+        />
+      )}
+      {this.props.preview === 'delft' && (
+        <AppBarButton
+          text="Delft Exbibition Behaviour Tools"
+          onClick={this.toggleExhibitionView}
+          icon={
+            this.state.editorMode === 'exhibitionPreview' ? (
+              <GridOnIcon />
+            ) : (
+              <GridOffIcon />
+            )
+          }
+        />
+      )}
+    </React.Fragment>
   );
 
   saveProject = () => {

@@ -33,10 +33,10 @@
     "webpack-config": "^7.5.0"
   },
   "dependencies": {
-    "@digirati/vam-viewer":  "^1.2.3",
-    "@fesk/react-bem": "^1.1.2",
     "@digirati/me-core": "^1.0.0",
     "@digirati/me-experience-editor": "^1.0.2",
+    "@digirati/vam-viewer": "^1.2.3",
+    "@fesk/react-bem": "^1.1.2",
     "@material-ui/core": "^3.6.1",
     "@material-ui/icons": "^3.0.1",
     "classnames": "^2.2.6",
@@ -58,6 +58,9 @@
     "react-scroll-wheel-handler": "^1.0.6",
     "react-virtualized": "^9.21.0",
     "throttle-debounce": "^2.1.0"
+  },
+  "resolutions": {
+    "@babel/runtime": "^7.6.0"
   },
   "fesk": {
     "port": 5501,
