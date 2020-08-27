@@ -21,6 +21,10 @@ try {
   rootCollection = rootManifestUrl;
 }
 
+// Set on window.
+window.rootManifestUrl = rootManifestUrl;
+window.rootCollection = rootCollection;
+
 export default {
   rootManifestUrl,
   rootCollection,
