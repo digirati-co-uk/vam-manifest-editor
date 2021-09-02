@@ -42,7 +42,7 @@
     "classnames": "^2.2.6",
     "deepmerge": "^3.0.0",
     "dotenv-webpack": "^1.7.0",
-    "immer": "^1.8.0",
+    "immer": "^9.0.6",
     "langs": "^2.0.0",
     "notistack": "^0.8.8",
     "prop-types": "^15.6.2",
