@@ -9,6 +9,8 @@ export default {
     'Properties.Annotation': 'Item',
     'Properties.Canvas': 'Slide',
     'Properties.Manifest': 'Slideshow',
+    'Manifest.behavior.value.yes': 'vam-annotated-zoom',
+    'Manifest.behavior.value.no': 'not-vam-annotated-zoom',
     'Canvas.Summary': 'Short description',
     'Canvas.Label': 'Title',
     'Canvas.RequiredStatement': 'Legal notice',
@@ -25,13 +27,27 @@ export default {
     'Canvas.behavior.value.info-position-left': 'left',
     'Canvas.behavior.value.info-position-center': 'center',
     'Canvas.behavior.value.info-position-right': 'right',
+    'Canvas.behavior.value.embedded-tour': 'embedded-tour',
+    'Canvas.behavior.value.not-embedded-tour': 'not-embedded-tour',
   },
   behavior: {
+    Manifest: {
+      groups: [
+        {
+          label: 'annotated slides in the slide show?',
+          values: ['vam-annotated-zoom', 'not-vam-annotated-zoom']
+        }
+      ]
+    },
     Canvas: {
       groups: [
         {
           label: 'layout',
           values: ['layout-overlay', 'layout-split'],
+        },
+        {
+          label: 'embedded tour',
+          values: ['embedded-tour', 'not-embedded-tour']
         },
         {
           label: 'info position',
@@ -60,6 +76,7 @@ export default {
       'metadata',
       'navDate',
       'rights',
+      'behavior'
     ],
     Canvas: ['behavior', 'label', 'summary', 'requiredStatement'],
     Annotation: ['label', 'summary'],
